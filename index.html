@@ -323,6 +323,43 @@
             letter-spacing: 1px;
         }
 
+        /* ===== FILTROS Y BUSCADOR ===== */
+        .filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .filtros input,
+        .filtros select {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            padding: 10px 16px;
+            border-radius: var(--radius);
+            color: var(--ink);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+            flex: 1 1 200px;
+        }
+
+        .filtros input:focus,
+        .filtros select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .filtros input::placeholder {
+            color: var(--ink-dim);
+        }
+
+        .filtros select option {
+            background: var(--bg);
+            color: var(--ink);
+        }
+
         /* ---- product grid ---- */
         .grid {
             display: grid;
@@ -426,6 +463,43 @@
             color: #000000;
             background: var(--lime);
             font-weight: 600;
+        }
+
+        /* ===== PAGINACIÓN ===== */
+        .paginacion {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-pagina {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            color: var(--ink-dim);
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-pagina:hover:not(:disabled) {
+            border-color: var(--accent);
+            color: var(--ink);
+        }
+
+        .btn-pagina.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .btn-pagina:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
 
         /* ---- info strip ---- */
@@ -640,107 +714,29 @@
         </div>
     </section>
 
-    <!-- ===== CATÁLOGO ===== -->
+    <!-- ===== CATÁLOGO (DINÁMICO) ===== -->
     <section class="section" id="tienda">
         <div class="wrap">
             <div class="section-head">
                 <h2 class="section-title">Catálogo Destacado</h2>
                 <span class="section-note">[ Stock único por prenda ]</span>
             </div>
-            <div class="grid">
 
-                <!-- PRODUCTO 1 (Polerón Sportswear Pennant) -->
-                <div class="tag">
-                    <div class="tag-hole"></div>
-                    <div class="tag-photo">
-                        <img src="poleronr.jpeg" alt="Polerón Sportswear Pennant" onclick="openModal(this)">
-                    </div>
-                    <div class="tag-body">
-                        <div class="tag-name">Polerón Sportswear Pennant</div>
-                        <div class="tag-meta">Talla L</div>
-                        <div class="tag-price">$8.000</div>
-                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Polerón%20Sportswear%20Pennant"
-                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
-                    </div>
-                </div>
-
-                <!-- PRODUCTO 2 (Polerón Verde Musgo - One Night at a Time Tour) -->
-                <div class="tag">
-                    <div class="tag-hole"></div>
-                    <div class="tag-photo">
-                        <img src="image.jpeg" alt="Polerón Verde Musgo - One Night at a Time Tour"
-                            onclick="openModal(this)">
-                    </div>
-                    <div class="tag-body">
-                        <div class="tag-name">Polerón Verde Musgo - One Night at a Time Tour</div>
-                        <div class="tag-meta">Talla L</div>
-                        <div class="tag-price">$7.000</div>
-                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Polerón%20Verde%20Musgo%20One%20Night%20Tour"
-                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
-                    </div>
-                </div>
-
-                <!-- PRODUCTO 3 -->
-                <div class="tag">
-                    <div class="tag-hole"></div>
-                    <div class="tag-photo">
-                        <img src="polera.jpg" alt="Polera Graphic Print" onclick="openModal(this)">
-                    </div>
-                    <div class="tag-body">
-                        <div class="tag-name">Polera Graphic Print</div>
-                        <div class="tag-meta">Talla L · Blanco Washed</div>
-                        <div class="tag-price">$14.990</div>
-                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20la%20Polera%20Graphic%20Print"
-                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
-                    </div>
-                </div>
-
-                <!-- PRODUCTO 4 -->
-                <div class="tag">
-                    <div class="tag-hole"></div>
-                    <div class="tag-photo">
-                        <img src="gorro.jpg" alt="Gorro Beanie Neon" onclick="openModal(this)">
-                    </div>
-                    <div class="tag-body">
-                        <div class="tag-name">Gorro Beanie Neon</div>
-                        <div class="tag-meta">Talla Única · Verde Lima</div>
-                        <div class="tag-price">$8.990</div>
-                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Gorro%20Beanie%20Neon"
-                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
-                    </div>
-                </div>
-
-                <!-- PRODUCTO 5 -->
-                <div class="tag">
-                    <div class="tag-hole"></div>
-                    <div class="tag-photo">
-                        <img src="chaqueta.jpg" alt="Chaqueta Windbreaker 90s" onclick="openModal(this)">
-                    </div>
-                    <div class="tag-body">
-                        <div class="tag-name">Chaqueta Windbreaker 90s</div>
-                        <div class="tag-meta">Talla L · Púrpura / Verde</div>
-                        <div class="tag-price">$29.990</div>
-                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20la%20Chaqueta%20Windbreaker%2090s"
-                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
-                    </div>
-                </div>
-
-                <!-- PRODUCTO 6 -->
-                <div class="tag">
-                    <div class="tag-hole"></div>
-                    <div class="tag-photo">
-                        <img src="bolso.jpg" alt="Crossbody Bag Urbano" onclick="openModal(this)">
-                    </div>
-                    <div class="tag-body">
-                        <div class="tag-name">Crossbody Bag Urbano</div>
-                        <div class="tag-meta">Talla Única · Negro / Púrpura</div>
-                        <div class="tag-price">$12.990</div>
-                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Crossbody%20Bag%20Urbano"
-                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
-                    </div>
-                </div>
-
+            <!-- FILTROS Y BUSCADOR -->
+            <div class="filtros">
+                <input type="text" id="buscadorProductos" placeholder="🔍 Buscar prenda..." oninput="aplicarFiltros()">
+                <select id="filtroCategoria" onchange="aplicarFiltros()">
+                    <option value="todos">Todas las categorías</option>
+                </select>
             </div>
+
+            <!-- CONTENEDOR DE PRODUCTOS (se llena con JavaScript) -->
+            <div class="grid" id="productGrid">
+                <!-- Aquí JavaScript generará las tarjetas -->
+            </div>
+
+            <!-- PAGINACIÓN -->
+            <div class="paginacion" id="paginacion"></div>
         </div>
     </section>
 
@@ -800,45 +796,8 @@
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
-    <script>
-        // Ocultar splash después de 2 segundos
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                const splash = document.getElementById('splash');
-                splash.classList.add('hidden');
-            }, 2000);
-        });
-
-        // Abrir modal con la imagen clickeada
-        function openModal(imgElement) {
-            var modal = document.getElementById('imageModal');
-            var modalImg = document.getElementById('modalImg');
-            modal.style.display = 'flex';
-            modalImg.src = imgElement.src;
-            modalImg.alt = imgElement.alt;
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Cerrar modal
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Cerrar modal si se hace clic fuera de la imagen
-        document.getElementById('imageModal').addEventListener('click', function (event) {
-            if (event.target === this) {
-                closeModal();
-            }
-        });
-
-        // Cerrar modal con tecla ESC
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
-        });
-    </script>
+    <!-- Cargar primero el archivo de productos y luego el resto de funciones (ya están dentro de productos.js) -->
+    <script src="productos.js"></script>
 
 </body>
 
