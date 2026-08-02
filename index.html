@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ropa La Otra Vuelta — Ropa de Segunda Mano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0D0D0E;
+            --bg-soft: #16151A;
+            --paper: #222028;
+            --ink: #F4F3F7;
+            --ink-dim: #A6A1B2;
+            --accent: #8B5CF6;
+            /* Morado vibrante extraído del logo */
+            --accent-glow: #7C3AED;
+            /* Morado profundo */
+            --lime: #C0F000;
+            /* Verde neón / Lima del logo */
+            --line: #2D2A36;
+            --radius: 4px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---- nav ---- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(13, 13, 14, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            line-height: 1.05;
+        }
+
+        .logo img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: block;
+            object-fit: cover;
+            border: 2px solid var(--lime);
+        }
+
+        .logo-text {
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--lime);
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 28px;
+            font-size: 14px;
+            color: var(--ink-dim);
+        }
+
+        .navlinks a:hover {
+            color: var(--lime);
+        }
+
+        @media (max-width:640px) {
+            .navlinks {
+                display: none;
+            }
+        }
+
+        /* ---- hero ---- */
+        .hero {
+            padding: 90px 24px 70px;
+            position: relative;
+            border-bottom: 1px solid var(--line);
+            background:
+                radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.25), transparent 45%),
+                radial-gradient(circle at 8% 85%, rgba(192, 240, 0, 0.15), transparent 40%),
+                repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0 2px, transparent 2px 40px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--lime);
+            border: 1px solid var(--lime);
+            background: rgba(192, 240, 0, 0.08);
+            padding: 6px 12px;
+            margin-bottom: 28px;
+            border-radius: var(--radius);
+        }
+
+        h1.headline {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(48px, 10vw, 108px);
+            line-height: 0.92;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            max-width: 850px;
+        }
+
+        h1.headline .accent {
+            color: var(--accent);
+        }
+
+        h1.headline .lime {
+            color: var(--lime);
+        }
+
+        .hero-sub {
+            max-width: 500px;
+            margin-top: 26px;
+            color: var(--ink-dim);
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            margin-top: 38px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 14px 24px;
+            border-radius: var(--radius);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+            border: 1px solid var(--line);
+            cursor: pointer;
+        }
+
+        .btn-solid {
+            background: var(--lime);
+            color: #000000;
+            border-color: var(--lime);
+            font-weight: 700;
+        }
+
+        .btn-solid:hover {
+            background: #D4FF1A;
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--line);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ---- section headers ---- */
+        .section {
+            padding: 70px 24px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(28px, 4vw, 40px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-note {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-dim);
+            letter-spacing: 1px;
+        }
+
+        /* ---- product grid (hang-tag style) ---- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 28px;
+        }
+
+        .tag {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .tag:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.15);
+        }
+
+        .tag-photo {
+            aspect-ratio: 4/5;
+            background:
+                linear-gradient(135deg, rgba(139, 92, 246, 0.1) 25%, transparent 25%) 0 0/16px 16px,
+                linear-gradient(225deg, rgba(192, 240, 0, 0.08) 25%, transparent 25%) 0 0/16px 16px,
+                #1B1A22;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-align: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .tag-hole {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--line);
+            background: var(--bg);
+        }
+
+        .tag-body {
+            padding: 18px;
+        }
+
+        .tag-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--ink);
+        }
+
+        .tag-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-dim);
+            margin-bottom: 14px;
+        }
+
+        .tag-price {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 18px;
+            color: var(--lime);
+            font-weight: 700;
+        }
+
+        .tag-buy {
+            margin-top: 14px;
+            display: block;
+            text-align: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 10px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        .tag-buy:hover {
+            border-color: var(--lime);
+            color: #000000;
+            background: var(--lime);
+            font-weight: 600;
+        }
+
+        /* ---- info strip ---- */
+        .strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+        }
+
+        .strip-item {
+            background: var(--bg-soft);
+            padding: 36px 28px;
+        }
+
+        .strip-num {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--lime);
+            font-size: 13px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .strip-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .strip-text {
+            color: var(--ink-dim);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width:700px) {
+            .strip {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---- contact ---- */
+        .contact {
+            padding: 90px 24px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.12), transparent 60%);
+        }
+
+        .contact-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(32px, 6vw, 56px);
+            text-transform: uppercase;
+            max-width: 640px;
+            margin: 0 auto 18px;
+        }
+
+        .contact-sub {
+            color: var(--ink-dim);
+            max-width: 500px;
+            margin: 0 auto 36px;
+            line-height: 1.6;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            padding: 32px 24px;
+            text-align: center;
+            color: var(--ink-dim);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            border-top: 1px solid var(--line);
+            background: var(--bg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.jpg" alt="Ropa La Otra Vuelta">
+                <span class="logo-text">ROPA LA<br>OTRA <span>VUELTA</span></span>
+            </div>
+            <div class="navlinks">
+                <a href="#tienda">Tienda</a>
+                <a href="#info">Envíos</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="wrap">
+            <span class="eyebrow">● Otra oportunidad, otro estilo</span>
+            <h1 class="headline">Ropa La Otra<br><span class="accent">Vuelta</span><span class="lime">.</span></h1>
+            <p class="hero-sub">Selección curada de ropa de segunda mano urbana y vintage. Piezas únicas unisex con
+                actitud. Pides por WhatsApp o Instagram y despachamos a todo Chile.</p>
+            <div class="hero-cta">
+                <a href="#tienda" class="btn btn-solid">Ver catálogo</a>
+                <a href="https://wa.me/56900000000" class="btn btn-ghost" target="_blank" rel="noopener">Escribir por
+                    WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="tienda">
+        <div class="wrap">
+            <div class="section-head">
+                <h2 class="section-title">Catálogo Destacado</h2>
+                <span class="section-note">[ Stock único por prenda ]</span>
+            </div>
+            <div class="grid">
+
+                <div class="tag">
+                    <div class="tag-hole"></div>
+                    <div class="tag-photo">FOTO<br>PRODUCTO 1</div>
+                    <div class="tag-body">
+                        <div class="tag-name">Polerón Oversize Vintage</div>
+                        <div class="tag-meta">Talla XL · Violeta / Negro</div>
+                        <div class="tag-price">$19.990</div>
+                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20el%20Polerón%20Oversize%20Vintage"
+                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
+                    </div>
+                </div>
+
+                <div class="tag">
+                    <div class="tag-hole"></div>
+                    <div class="tag-photo">FOTO<br>PRODUCTO 2</div>
+                    <div class="tag-body">
+                        <div class="tag-name">Pantalón Cargo Streetwear</div>
+                        <div class="tag-meta">Talla M · Negro</div>
+                        <div class="tag-price">$22.990</div>
+                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20el%20Pantalón%20Cargo%20Streetwear"
+                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
+                    </div>
+                </div>
+
+                <div class="tag">
+                    <div class="tag-hole"></div>
+                    <div class="tag-photo">FOTO<br>PRODUCTO 3</div>
+                    <div class="tag-body">
+                        <div class="tag-name">Polera Graphic Print</div>
+                        <div class="tag-meta">Talla L · Blanco Washed</div>
+                        <div class="tag-price">$14.990</div>
+                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20la%20Polera%20Graphic%20Print"
+                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
+                    </div>
+                </div>
+
+                <div class="tag">
+                    <div class="tag-hole"></div>
+                    <div class="tag-photo">FOTO<br>PRODUCTO 4</div>
+                    <div class="tag-body">
+                        <div class="tag-name">Gorro Beanie Neon</div>
+                        <div class="tag-meta">Talla Única · Verde Lima</div>
+                        <div class="tag-price">$8.990</div>
+                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20el%20Gorro%20Beanie%20Neon"
+                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
+                    </div>
+                </div>
+
+                <div class="tag">
+                    <div class="tag-hole"></div>
+                    <div class="tag-photo">FOTO<br>PRODUCTO 5</div>
+                    <div class="tag-body">
+                        <div class="tag-name">Chaqueta Windbreaker 90s</div>
+                        <div class="tag-meta">Talla L · Púrpura / Verde</div>
+                        <div class="tag-price">$29.990</div>
+                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20la%20Chaqueta%20Windbreaker%2090s"
+                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
+                    </div>
+                </div>
+
+                <div class="tag">
+                    <div class="tag-hole"></div>
+                    <div class="tag-photo">FOTO<br>PRODUCTO 6</div>
+                    <div class="tag-body">
+                        <div class="tag-name">Crossbody Bag Urbano</div>
+                        <div class="tag-meta">Talla Única · Negro / Purpura</div>
+                        <div class="tag-price">$12.990</div>
+                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20el%20Crossbody%20Bag%20Urbano"
+                            class="tag-buy" target="_blank" rel="noopener">Consultar</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="info" style="padding:0; border-bottom:none;">
+        <div class="strip">
+            <div class="strip-item">
+                <div class="strip-num">01 — ELIGE TU PRENDA</div>
+                <div class="strip-title">WhatsApp o Instagram</div>
+                <div class="strip-text">Mándanos captura o el nombre de la prenda que te gustó. Te respondemos al
+                    instante con detalles y medidas exactas.</div>
+            </div>
+            <div class="strip-item">
+                <div class="strip-num">02 — PAGO DIRECTO</div>
+                <div class="strip-title">Transferencia FÁCIL</div>
+                <div class="strip-text">Te compartimos nuestros datos bancarios por chat para concretar tu compra de
+                    manera rápida y segura.</div>
+            </div>
+            <div class="strip-item">
+                <div class="strip-num">03 — DESPACHO RÁPIDO</div>
+                <div class="strip-title">Envíos a todo Chile</div>
+                <div class="strip-text">Despachamos por Starken / Chilexpress o coordinamos punto de retiro en Santiago.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="wrap">
+            <h2 class="contact-title">¿Listo para darle la otra vuelta a tu estilo?</h2>
+            <p class="contact-sub">Escríbenos directamente para responder tus dudas sobre tallas, envíos o detalles de
+                cualquier prenda.</p>
+            <div class="contact-buttons">
+                <a href="https://wa.me/56900000000" class="btn btn-solid" target="_blank" rel="noopener">Escribir por
+                    WhatsApp</a>
+                <a href="https://instagram.com/tu_usuario" class="btn btn-ghost" target="_blank" rel="noopener">Ver
+                    Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        ROPA LA OTRA VUELTA — Ropa de Segunda Mano · Santiago, Chile · Otra oportunidad, otro estilo.
+    </footer>
+
+</body>
+
+</html>
