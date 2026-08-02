@@ -17,11 +17,10 @@
             --ink: #F4F3F7;
             --ink-dim: #A6A1B2;
             --accent: #8B5CF6;
-            /* Morado vibrante extraído del logo */
+            /* Morado vibrante */
             --accent-glow: #7C3AED;
-            /* Morado profundo */
             --lime: #C0F000;
-            /* Verde neón / Lima del logo */
+            /* Verde neón */
             --line: #2D2A36;
             --radius: 4px;
         }
@@ -64,6 +63,75 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
+        }
+
+        /* ===== SPLASH SCREEN ===== */
+        #splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            text-align: center;
+        }
+
+        #splash.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #splash .splash-logo {
+            width: 180px;
+            height: auto;
+            border-radius: 50%;
+            border: 3px solid var(--lime);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+            margin-bottom: 30px;
+        }
+
+        #splash .splash-text {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(24px, 5vw, 48px);
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #splash .splash-text .lime {
+            color: var(--lime);
+        }
+
+        .loader {
+            margin-top: 30px;
+            width: 60px;
+            height: 4px;
+            background: var(--line);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loader::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background: var(--lime);
+            animation: loading 1.2s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(350%);
+            }
         }
 
         /* ---- nav ---- */
@@ -257,7 +325,7 @@
             letter-spacing: 1px;
         }
 
-        /* ---- product grid (hang-tag style) ---- */
+        /* ---- product grid ---- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -426,6 +494,29 @@
             flex-wrap: wrap;
         }
 
+        /* ===== LOGO GRANDE AL FINAL (inferior derecha) ===== */
+        .footer-logo {
+            margin-top: 50px;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .footer-logo img {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            opacity: 0.7;
+            border: 2px solid var(--lime);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            opacity: 1;
+        }
+
         footer {
             padding: 32px 24px;
             text-align: center;
@@ -440,6 +531,16 @@
 
 <body>
 
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splash" role="progressbar" aria-label="Cargando página">
+        <img src="logo.jpg" alt="Ropa La Otra Vuelta" class="splash-logo">
+        <div class="splash-text">
+            LA OTRA <span class="lime">VUELTA</span>
+        </div>
+        <div class="loader" aria-hidden="true"></div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
     <header>
         <nav>
             <div class="logo">
@@ -454,6 +555,7 @@
         </nav>
     </header>
 
+    <!-- ===== HERO ===== -->
     <section class="hero">
         <div class="wrap">
             <span class="eyebrow">● Otra oportunidad, otro estilo</span>
@@ -462,12 +564,13 @@
                 actitud. Pides por WhatsApp o Instagram y despachamos a todo Chile.</p>
             <div class="hero-cta">
                 <a href="#tienda" class="btn btn-solid">Ver catálogo</a>
-                <a href="https://wa.me/56900000000" class="btn btn-ghost" target="_blank" rel="noopener">Escribir por
+                <a href="https://wa.me/56959641986" class="btn btn-ghost" target="_blank" rel="noopener">Escribir por
                     WhatsApp</a>
             </div>
         </div>
     </section>
 
+    <!-- ===== CATÁLOGO ===== -->
     <section class="section" id="tienda">
         <div class="wrap">
             <div class="section-head">
@@ -483,7 +586,7 @@
                         <div class="tag-name">Polerón Oversize Vintage</div>
                         <div class="tag-meta">Talla XL · Violeta / Negro</div>
                         <div class="tag-price">$19.990</div>
-                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20el%20Polerón%20Oversize%20Vintage"
+                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Polerón%20Oversize%20Vintage"
                             class="tag-buy" target="_blank" rel="noopener">Consultar</a>
                     </div>
                 </div>
@@ -495,7 +598,7 @@
                         <div class="tag-name">Pantalón Cargo Streetwear</div>
                         <div class="tag-meta">Talla M · Negro</div>
                         <div class="tag-price">$22.990</div>
-                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20el%20Pantalón%20Cargo%20Streetwear"
+                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Pantalón%20Cargo%20Streetwear"
                             class="tag-buy" target="_blank" rel="noopener">Consultar</a>
                     </div>
                 </div>
@@ -507,7 +610,7 @@
                         <div class="tag-name">Polera Graphic Print</div>
                         <div class="tag-meta">Talla L · Blanco Washed</div>
                         <div class="tag-price">$14.990</div>
-                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20la%20Polera%20Graphic%20Print"
+                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20la%20Polera%20Graphic%20Print"
                             class="tag-buy" target="_blank" rel="noopener">Consultar</a>
                     </div>
                 </div>
@@ -519,7 +622,7 @@
                         <div class="tag-name">Gorro Beanie Neon</div>
                         <div class="tag-meta">Talla Única · Verde Lima</div>
                         <div class="tag-price">$8.990</div>
-                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20el%20Gorro%20Beanie%20Neon"
+                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Gorro%20Beanie%20Neon"
                             class="tag-buy" target="_blank" rel="noopener">Consultar</a>
                     </div>
                 </div>
@@ -531,7 +634,7 @@
                         <div class="tag-name">Chaqueta Windbreaker 90s</div>
                         <div class="tag-meta">Talla L · Púrpura / Verde</div>
                         <div class="tag-price">$29.990</div>
-                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20la%20Chaqueta%20Windbreaker%2090s"
+                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20la%20Chaqueta%20Windbreaker%2090s"
                             class="tag-buy" target="_blank" rel="noopener">Consultar</a>
                     </div>
                 </div>
@@ -543,7 +646,7 @@
                         <div class="tag-name">Crossbody Bag Urbano</div>
                         <div class="tag-meta">Talla Única · Negro / Purpura</div>
                         <div class="tag-price">$12.990</div>
-                        <a href="https://wa.me/56900000000?text=Hola!%20Me%20interesa%20el%20Crossbody%20Bag%20Urbano"
+                        <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Crossbody%20Bag%20Urbano"
                             class="tag-buy" target="_blank" rel="noopener">Consultar</a>
                     </div>
                 </div>
@@ -552,6 +655,7 @@
         </div>
     </section>
 
+    <!-- ===== STRIP (3 PASOS) ===== -->
     <section class="section" id="info" style="padding:0; border-bottom:none;">
         <div class="strip">
             <div class="strip-item">
@@ -569,29 +673,46 @@
             <div class="strip-item">
                 <div class="strip-num">03 — DESPACHO RÁPIDO</div>
                 <div class="strip-title">Envíos a todo Chile</div>
-                <div class="strip-text">Despachamos por Starken / Chilexpress o coordinamos punto de retiro en Santiago.
-                </div>
+                <div class="strip-text">Despachamos por Starken y retiros en la comuna de Ñuñoa Metros Grecia / Chile
+                    España.</div>
             </div>
         </div>
     </section>
 
+    <!-- ===== CONTACTO + LOGO GRANDE ===== -->
     <section class="contact" id="contacto">
         <div class="wrap">
             <h2 class="contact-title">¿Listo para darle la otra vuelta a tu estilo?</h2>
             <p class="contact-sub">Escríbenos directamente para responder tus dudas sobre tallas, envíos o detalles de
                 cualquier prenda.</p>
             <div class="contact-buttons">
-                <a href="https://wa.me/56900000000" class="btn btn-solid" target="_blank" rel="noopener">Escribir por
+                <a href="https://wa.me/56959641986" class="btn btn-solid" target="_blank" rel="noopener">Escribir por
                     WhatsApp</a>
-                <a href="https://instagram.com/tu_usuario" class="btn btn-ghost" target="_blank" rel="noopener">Ver
+                <a href="https://instagram.com/laotravuelta.ropa" class="btn btn-ghost" target="_blank"
+                    rel="noopener">Ver
                     Instagram</a>
+            </div>
+            <!-- Logo grande alineado a la derecha -->
+            <div class="footer-logo">
+                <img src="logo.jpg" alt="Ropa La Otra Vuelta - Logo">
             </div>
         </div>
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer>
         ROPA LA OTRA VUELTA — Ropa de Segunda Mano · Santiago, Chile · Otra oportunidad, otro estilo.
     </footer>
+
+    <!-- ===== SCRIPT PARA OCULTAR SPLASH ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                const splash = document.getElementById('splash');
+                splash.classList.add('hidden');
+            }, 2000);
+        });
+    </script>
 
 </body>
 
