@@ -17,10 +17,8 @@
             --ink: #F4F3F7;
             --ink-dim: #A6A1B2;
             --accent: #8B5CF6;
-            /* Morado vibrante */
             --accent-glow: #7C3AED;
             --lime: #C0F000;
-            /* Verde neón */
             --line: #2D2A36;
             --radius: 4px;
         }
@@ -349,20 +347,25 @@
 
         .tag-photo {
             aspect-ratio: 4/5;
-            background:
-                linear-gradient(135deg, rgba(139, 92, 246, 0.1) 25%, transparent 25%) 0 0/16px 16px,
-                linear-gradient(225deg, rgba(192, 240, 0, 0.08) 25%, transparent 25%) 0 0/16px 16px,
-                #1B1A22;
+            background: #1B1A22;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--ink-dim);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 1px;
-            text-align: center;
-            padding: 16px;
+            overflow: hidden;
             border-bottom: 1px solid var(--line);
+            cursor: pointer;
+        }
+
+        .tag-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .tag-photo img:hover {
+            transform: scale(1.03);
         }
 
         .tag-hole {
@@ -374,6 +377,7 @@
             border-radius: 50%;
             border: 2px solid var(--line);
             background: var(--bg);
+            z-index: 2;
         }
 
         .tag-body {
@@ -494,7 +498,7 @@
             flex-wrap: wrap;
         }
 
-        /* ===== LOGO GRANDE AL FINAL (inferior derecha) ===== */
+        /* ===== LOGO GRANDE AL FINAL ===== */
         .footer-logo {
             margin-top: 50px;
             display: flex;
@@ -515,6 +519,72 @@
 
         .footer-logo img:hover {
             opacity: 1;
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 40px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(13, 13, 14, 0.92);
+            backdrop-filter: blur(6px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            border: 2px solid var(--lime);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: var(--ink);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--lime);
+        }
+
+        @media (max-width: 700px) {
+            .modal-content {
+                max-width: 95%;
+                max-height: 70vh;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 20px;
+                font-size: 32px;
+            }
         }
 
         footer {
@@ -579,10 +649,11 @@
             </div>
             <div class="grid">
 
+                <!-- PRODUCTO 1 -->
                 <div class="tag">
                     <div class="tag-hole"></div>
                     <div class="tag-photo">
-                        <img src="poleronr.jpeg" alt="Polerón Sportswear Pennant">
+                        <img src="poleronr.jpeg" alt="Polerón Sportswear Pennant" onclick="openModal(this)">
                     </div>
                     <div class="tag-body">
                         <div class="tag-name">Polerón Sportswear Pennant</div>
@@ -593,9 +664,12 @@
                     </div>
                 </div>
 
+                <!-- PRODUCTO 2 -->
                 <div class="tag">
                     <div class="tag-hole"></div>
-                    <div class="tag-photo">FOTO<br>PRODUCTO 2</div>
+                    <div class="tag-photo">
+                        <img src="cargo.jpg" alt="Pantalón Cargo Streetwear" onclick="openModal(this)">
+                    </div>
                     <div class="tag-body">
                         <div class="tag-name">Pantalón Cargo Streetwear</div>
                         <div class="tag-meta">Talla M · Negro</div>
@@ -605,9 +679,12 @@
                     </div>
                 </div>
 
+                <!-- PRODUCTO 3 -->
                 <div class="tag">
                     <div class="tag-hole"></div>
-                    <div class="tag-photo">FOTO<br>PRODUCTO 3</div>
+                    <div class="tag-photo">
+                        <img src="polera.jpg" alt="Polera Graphic Print" onclick="openModal(this)">
+                    </div>
                     <div class="tag-body">
                         <div class="tag-name">Polera Graphic Print</div>
                         <div class="tag-meta">Talla L · Blanco Washed</div>
@@ -617,9 +694,12 @@
                     </div>
                 </div>
 
+                <!-- PRODUCTO 4 -->
                 <div class="tag">
                     <div class="tag-hole"></div>
-                    <div class="tag-photo">FOTO<br>PRODUCTO 4</div>
+                    <div class="tag-photo">
+                        <img src="gorro.jpg" alt="Gorro Beanie Neon" onclick="openModal(this)">
+                    </div>
                     <div class="tag-body">
                         <div class="tag-name">Gorro Beanie Neon</div>
                         <div class="tag-meta">Talla Única · Verde Lima</div>
@@ -629,9 +709,12 @@
                     </div>
                 </div>
 
+                <!-- PRODUCTO 5 -->
                 <div class="tag">
                     <div class="tag-hole"></div>
-                    <div class="tag-photo">FOTO<br>PRODUCTO 5</div>
+                    <div class="tag-photo">
+                        <img src="chaqueta.jpg" alt="Chaqueta Windbreaker 90s" onclick="openModal(this)">
+                    </div>
                     <div class="tag-body">
                         <div class="tag-name">Chaqueta Windbreaker 90s</div>
                         <div class="tag-meta">Talla L · Púrpura / Verde</div>
@@ -641,12 +724,15 @@
                     </div>
                 </div>
 
+                <!-- PRODUCTO 6 -->
                 <div class="tag">
                     <div class="tag-hole"></div>
-                    <div class="tag-photo">FOTO<br>PRODUCTO 6</div>
+                    <div class="tag-photo">
+                        <img src="bolso.jpg" alt="Crossbody Bag Urbano" onclick="openModal(this)">
+                    </div>
                     <div class="tag-body">
                         <div class="tag-name">Crossbody Bag Urbano</div>
-                        <div class="tag-meta">Talla Única · Negro / Purpura</div>
+                        <div class="tag-meta">Talla Única · Negro / Púrpura</div>
                         <div class="tag-price">$12.990</div>
                         <a href="https://wa.me/56959641986?text=Hola!%20Me%20interesa%20el%20Crossbody%20Bag%20Urbano"
                             class="tag-buy" target="_blank" rel="noopener">Consultar</a>
@@ -701,18 +787,55 @@
         </div>
     </section>
 
+    <!-- ===== MODAL ===== -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
     <!-- ===== FOOTER ===== -->
     <footer>
         ROPA LA OTRA VUELTA — Ropa de Segunda Mano · Santiago, Chile · Otra oportunidad, otro estilo.
     </footer>
 
-    <!-- ===== SCRIPT PARA OCULTAR SPLASH ===== -->
+    <!-- ===== SCRIPTS ===== -->
     <script>
+        // Ocultar splash después de 2 segundos
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
                 const splash = document.getElementById('splash');
                 splash.classList.add('hidden');
             }, 2000);
+        });
+
+        // Abrir modal con la imagen clickeada
+        function openModal(imgElement) {
+            var modal = document.getElementById('imageModal');
+            var modalImg = document.getElementById('modalImg');
+            modal.style.display = 'flex';
+            modalImg.src = imgElement.src;
+            modalImg.alt = imgElement.alt;
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar modal si se hace clic fuera de la imagen
+        document.getElementById('imageModal').addEventListener('click', function (event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 
